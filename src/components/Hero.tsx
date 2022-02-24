@@ -1,8 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
+
 function Index() {
   const [show, setShow] = useState(false);
+  const { data: session, status } = useSession();
 
   // get all aircraft data, do we store in DB or do we make an api call every time we load page?
 

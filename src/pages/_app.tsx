@@ -11,15 +11,15 @@ import { GlobalStyles } from "@mui/material";
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <SessionProvider>
-      <ThemeProvider theme={customTheme}>
+      {/* <ThemeProvider theme={customTheme}>
         <CssBaseline />
         <GlobalStyles
           styles={{
             body: { backgroundColor: "#283D3B" },
           }}
         />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      </ThemeProvider> */}
+      <Component {...pageProps} />
     </SessionProvider>
   );
 };
