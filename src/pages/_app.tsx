@@ -7,14 +7,6 @@ import { SessionProvider } from "next-auth/react";
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <SessionProvider>
-      {/* <ThemeProvider theme={customTheme}>
-        <CssBaseline />
-        <GlobalStyles
-          styles={{
-            body: { backgroundColor: "#283D3B" },
-          }}
-        />
-      </ThemeProvider> */}
       <Component {...pageProps} />
     </SessionProvider>
   );
