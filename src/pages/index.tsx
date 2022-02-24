@@ -4,10 +4,10 @@ import Head from "next/head";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className=''>
       <Head>
         <title>Tourist Trap</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
       <NavBar />
       <Hero />
