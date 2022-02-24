@@ -6,9 +6,9 @@ type Props = {};
 
 const Hero: FC = (props: Props) => {
   return (
-    <div className="bg-white dark:bg-gray-800 overflow-hidden relative lg:flex lg:items-center max-w-screen-2xl mx-auto">
+    <div className="bg-white overflow-hidden relative lg:flex lg:items-center max-w-screen-2xl mx-auto">
       <div className="py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
-        <h2 className="text-center md:text-left text-3xl font-semibold text-black dark:text-white sm:text-4xl">
+        <h2 className="text-center md:text-left text-3xl font-semibold text-black sm:text-4xl">
           <span className="block">Mother hearth host your travel</span>
         </h2>
         <p className="text-center md:text-left text-md mt-4 text-gray-400">
