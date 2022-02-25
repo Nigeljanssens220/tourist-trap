@@ -9,8 +9,8 @@ export default function Home() {
         <title>Tourist Trap</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <Hero /> */}
-      <FormDateRangePicker />
+      <Hero />
+      {/* <FormDateRangePicker /> */}
     </div>
   );
 }
