@@ -1,51 +1,46 @@
-import getFutureDate from "@/utils/dates";
-import isoDate from "@/utils/dates";
-import React, { FC } from "react";
-// import FormDateRangePicker from "./FormDateField/old";
+import React, { FC, useState } from "react";
+
+import FormDateRangePicker from "./FormDateRangePicker";
+import FormNumberPicker from "./FormNumberPicker";
 import FormTextField from "./FormTextField";
 
 const SearchFlightForm: FC = () => {
-  const today = new Date();
-  const tomorrow = getFutureDate(new Date(), 1);
-
   return (
-    <div className='bg-zinc-800 border border-gray-300 shadow-sm max-w-md w-full mx-auto sm:overflow-hidden'>
-      <div className='py-8 px-10'>
-        <div className=''>
-          <div className='w-full space-y-6'>
-            <div className='flex space-x-6'>
-              <div className='w-full'>
-                <div className=' relative '>
-                  <FormTextField id='search-form-origin' placeholder='Origin' />
+    <div className="flex flex-col md:flex-row bg-zinc-800 border border-gray-300 shadow-sm mx-auto sm:overflow-hidden">
+      <div className="flex flex-col md:flex-row space-x-5 py-8 px-10 ">
+        <div className="border-8">
+          <div className="w-full space-y-6">
+            <div className="flex space-x-6">
+              <div className="w-full">
+                <div className=" relative ">
+                  <FormTextField id="search-form-origin" placeholder="Origin" />
                 </div>
               </div>
-              <div className='w-full'>
-                <div className=' relative '>
+              <div className="w-full">
+                <div className=" relative ">
                   <FormTextField
-                    id='search-form-destination'
-                    placeholder='Destination'
+                    id="search-form-destination"
+                    placeholder="Destination"
                   />
                 </div>
               </div>
             </div>
-            {/* <FormDateRangePicker today={today} tomorrow={tomorrow} /> */}
-            <div>
-              <span className='block w-full rounded-md shadow-sm'>
-                <button
-                  type='button'
-                  className='py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg '
-                >
-                  Search
-                </button>
-              </span>
-            </div>
+            <FormDateRangePicker />
           </div>
         </div>
+        <div className="flex items-center justify-center text-gray-100 border-2 border-yellow-500 w-96">
+          <FormNumberPicker />
+        </div>
       </div>
-      <div className='px-4 py-6 border-t-2 border-gray-200 bg-gray-50 sm:px-10'>
-        <p className='text-xs leading-5 text-gray-500'>
-          This data are display for information and can change
-        </p>
+      <div className="border max-w-screen-sm">
+        <span className="block rounded-md shadow-sm">
+          <button
+            type="button"
+            className="py-2 px-4 bg-zinc-200 hover:bg-zinc-400 focus:ring-zinc-400 focus:ring-offset-zinc-400 text-zinc-800 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded "
+          >
+            Search
+          </button>
+        </span>
       </div>
     </div>
   );

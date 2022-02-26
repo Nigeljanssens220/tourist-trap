@@ -16,7 +16,7 @@ const FormTextField: FC<FormTextFieldProps> = ({
   return (
     <div>
       <input
-        type='text'
+        type="text"
         id={id}
         className={classNames(
           className,

@@ -16,17 +16,6 @@ import { trpc } from "@/utils/trpc";
 import { TypographyProps } from "@mui/system";
 import { useCallback } from "react";
 
-const Copyright = (props: TypographyProps) => (
-  <Typography variant="body2" color="text.secondary" align="center" {...props}>
-    {"Copyright © "}
-    <Link color="inherit" href="https://mui.com/">
-      Your Website
-    </Link>{" "}
-    {new Date().getFullYear()}
-    {"."}
-  </Typography>
-);
-
 const FormSearchFlight = () => {
   const { client } = trpc.useContext();
   const [date, setDate] = React.useState<Date | null>(new Date(Date.now()));
@@ -70,11 +59,13 @@ const FormSearchFlight = () => {
                 id="origin"
                 label="Origin"
                 autoFocus
+                variant="filled"
                 InputLabelProps={{
                   shrink: false,
                 }}
                 InputProps={{
-                  className: "bg-red-900",
+                  className: "bg-red-900 items-center",
+                  disableUnderline: true,
                 }}
               />
             </Grid>
@@ -139,21 +130,13 @@ const FormSearchFlight = () => {
             mb={2}
             p={1}
             component={(props) => (
-              <Button {...props} type="submit" fullWidth variant="outlined" />
+              <Button {...props} type="submit" fullWidth variant="filled" />
             )}
           >
             Search Flights
           </Box>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
-      <Copyright />
     </Container>
   );
 };

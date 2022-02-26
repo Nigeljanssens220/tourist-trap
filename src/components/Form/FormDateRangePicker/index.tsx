@@ -11,19 +11,20 @@ const FormDateRangePicker: FC = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
-        startText="Check-in"
-        endText="Check-out"
+        startText="Departure date"
+        endText="Arrival date"
         value={value}
         onChange={(newValue) => {
           setValue(newValue);
         }}
+        inputFormat="dd/MM/yyyy"
         renderInput={(startProps, endProps) => (
           <>
-            <div className="flex items-center justify-evenly">
-              <div className="p-2 rounded bg-gray-700 hover:border-2 ">
+            <div className="flex flex-grow max-w-screen-sm justify-evenly items-center space-x-6">
+              <div className="p-1 pl-4 pt-2 outline-none rounded bg-zinc-700 border border-zinc-700 max-w-md">
                 <TextField
                   variant="standard"
-                  className="bg-gray-700"
+                  className="bg-zinc-700 "
                   {...startProps}
                   InputLabelProps={{ shrink: true, style: { color: "white" } }}
                   InputProps={{
@@ -32,11 +33,10 @@ const FormDateRangePicker: FC = () => {
                   }}
                 />
               </div>
-              <Box className="mx-10 bg-black text-white">To</Box>
-              <div className="p-2 rounded bg-gray-700 hover:border-2 ">
+              <div className="p-1 pl-4 pt-2 outline-none rounded bg-zinc-700 border border-zinc-700 max-w-md">
                 <TextField
                   variant="standard"
-                  className="bg-gray-700"
+                  className="bg-zinc-700 "
                   {...endProps}
                   InputLabelProps={{ shrink: true, style: { color: "white" } }}
                   InputProps={{

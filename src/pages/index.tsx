@@ -1,5 +1,8 @@
+import SearchFlightForm from "@/components/Form";
 import FormDateRangePicker from "@/components/Form/FormDateRangePicker";
 import Hero from "@/components/Hero";
+import FormSearchFlight from "@/components/SearchFlightMUI";
+// import FormSearchFlight from "@/components/SearchFlightForm";
 import Head from "next/head";
 
 export default function Home() {
@@ -9,8 +12,8 @@ export default function Home() {
         <title>Tourist Trap</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Hero />
-      {/* <FormDateRangePicker /> */}
+      {/* <Hero /> */}
+      <FormSearchFlight />
     </div>
   );
 }

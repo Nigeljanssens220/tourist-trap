@@ -16,7 +16,7 @@ const FormDatePicker: FC = () => {
   };
   return (
     <DatePicker
-      className='text-gray-100 rounded outline-none border border-zinc-700  flex-1 appearance-none py-2 px-4 bg-zinc-700 placeholder-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-transparent'
+      className="text-gray-100 rounded outline-none border border-zinc-700  flex-1 appearance-none py-2 px-4 bg-zinc-700 placeholder-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-transparent"
       selected={startDate}
       onChange={onChange}
       startDate={startDate}
