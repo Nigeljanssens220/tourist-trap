@@ -13,7 +13,7 @@ const FormSubmit: FC<FormSubmitProps> = ({ label }) => {
         className='flex items-center justify-center rounded  text-white w-full cursor-pointer '
       >
         <h2 className='font-medium'>{label}</h2>
-        <FlightIcon className='text-white w-8 h-8 mx-4 my-2' />
+        <FlightIcon className='text-white w-8 h-8 ml-4 my-2' />
       </button>
     </div>
   );
