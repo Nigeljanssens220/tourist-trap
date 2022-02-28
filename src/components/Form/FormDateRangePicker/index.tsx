@@ -48,7 +48,7 @@ const FormDateRangePicker: FC<FormDateRangePickerProps> = ({
                       style: { color: "gray" },
                     }}
                     InputProps={{
-                      disableUnderline: true,
+                      // disableUnderline: true,
                       style: { color: "black" },
                     }}
                   />
@@ -63,7 +63,7 @@ const FormDateRangePicker: FC<FormDateRangePickerProps> = ({
                       style: { color: "gray" },
                     }}
                     InputProps={{
-                      disableUnderline: true,
+                      // disableUnderline: true,
                       style: { color: "black" },
                     }}
                   />
