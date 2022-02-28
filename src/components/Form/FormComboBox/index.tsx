@@ -81,7 +81,7 @@ const FormComboBox: FC<FormComboBoxProps> = ({ name, className, ...rest }) => {
                 leaveTo='opacity-0'
                 afterLeave={() => setQuery("")}
               >
-                <Combobox.Options className='absolute w-full py-1 mt-1 overflow-auto no-scrollbar text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black  sm:text-sm'>
+                <Combobox.Options className='absolute w-full py-1 mt-1 overflow-auto no-scrollbar z-50 text-base bg-white  shadow-lg max-h-60 ring-1 ring-black  sm:text-sm'>
                   {filteredLocation.length === 0 && query !== "" ? (
                     <div className='cursor-default select-none relative py-2 px-4 text-gray-700'>
                       Nothing found.

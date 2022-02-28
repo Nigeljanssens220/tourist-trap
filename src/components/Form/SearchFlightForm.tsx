@@ -18,7 +18,7 @@ const FormSearchFlight: FC = () => {
       <Paper
         elevation={5}
         square
-        className='w-screen max-w-screen-md bg-zinc-400'
+        className='w-screen max-w-screen-md bg-zinc-200'
       >
         <form onSubmit={methods.handleSubmit(onSubmit)} className=''>
           <Grid
