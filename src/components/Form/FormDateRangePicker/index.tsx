@@ -38,11 +38,11 @@ const FormDateRangePicker: FC<FormDateRangePickerProps> = ({
             inputFormat='dd/MM/yyyy'
             renderInput={(startProps, endProps) => (
               <div className='flex flex-grow  justify-evenly items-center space-x-2 lg:space-x-5'>
-                <div className='p-1 pl-4 w-full pt-2 outline-none rounded-sm bg-white shadow-md max-w-md'>
+                <div className='p-1 pl-4 w-full pt-3 outline-none rounded-sm bg-white shadow-md max-w-md'>
                   <TextField
+                    {...startProps}
                     variant='standard'
                     className='bg-transparent w-full'
-                    {...startProps}
                     InputLabelProps={{
                       shrink: true,
                       style: { color: "gray" },
@@ -53,11 +53,11 @@ const FormDateRangePicker: FC<FormDateRangePickerProps> = ({
                     }}
                   />
                 </div>
-                <div className='p-1 pl-4 w-full pt-2 outline-none rounded-sm bg-white shadow-md max-w-md'>
+                <div className='p-1 pl-4 w-full pt-3 outline-none rounded-sm bg-white shadow-md max-w-md'>
                   <TextField
+                    {...endProps}
                     variant='standard'
                     className='bg-transparent w-full'
-                    {...endProps}
                     InputLabelProps={{
                       shrink: true,
                       style: { color: "gray" },

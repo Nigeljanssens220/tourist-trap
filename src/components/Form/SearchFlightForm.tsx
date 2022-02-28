@@ -63,38 +63,3 @@ const FormSearchFlight: FC = () => {
 };
 
 export default FormSearchFlight;
-//           <div className='flex flex-col px-10 pt-5 space-y-2 md:flex-row md:space-x-5 md:space-y-0'>
-//             <FormTextFieldAutoComplete name='origin' placeholder='Origin' />
-//             <FormTextFieldAutoComplete
-//               name='destination'
-//               placeholder='Destination'
-//             />
-//             <FormComboBox name='origin' />
-//             <FormComboBox name='destination' />
-//           </div>
-
-//           <FormDateRangePicker name='search-date-range' />
-
-//           <div className='flex items-center pt-1 md:pt-0'>
-//             <FormNumberPicker
-//               name='number-adults'
-//               defaultNumber={1}
-//               label='Number of adults'
-//             />
-//           </div>
-//           <div className='flex items-center pb-3 md:pb-0'>
-//             <FormNumberPicker
-//               name='number-children'
-//               label='Number of children'
-//               defaultNumber={0}
-//             />
-//           </div>
-//           <div className='flex rounded bg-black items-center hover:bg-zinc-800 active:ring active:ring-zinc-500'>
-//             <button
-//               type='submit'
-//               className='flex items-center justify-center rounded  text-white w-full cursor-pointer '
-//             >
-//               <h2 className='font-medium'>Search flights</h2>
-//               <FlightIcon className='text-white w-8 h-8 mx-4 my-2' />
-//             </button>
-//           </div>
