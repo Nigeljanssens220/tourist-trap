@@ -3,6 +3,7 @@
 /server
 /trash
 
+
 # dependencies
 /node_modules
 /.pnp
