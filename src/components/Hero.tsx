@@ -6,7 +6,7 @@ type Props = {};
 
 const Hero: FC = (props: Props) => {
   return (
-    <div className='bg-white overflow-hidden relative lg:flex lg:items-center max-w-screen-2xl mx-auto'>
+    <div className='bg-white overflow-hidden relative lg:flex lg:items-center max-w-screen-2xl mx-auto mb-5'>
       <div className='py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20'>
         <h2 className='text-center md:text-left text-3xl font-semibold text-black sm:text-4xl'>
           <span className='block'>Mother hearth hosts your travels</span>
@@ -38,7 +38,7 @@ const Hero: FC = (props: Props) => {
             objectFit='cover'
           />
         </div>
-        <div className='hidden md:block flex-col space-y-1'>
+        <div className='hidden md:block flex-col '>
           <Image
             src='/images/hero1.jpg'
             alt='waves2'

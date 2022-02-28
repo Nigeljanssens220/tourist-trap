@@ -3,53 +3,77 @@ import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateRangePicker, { DateRange } from "@mui/lab/DateRangePicker";
-import { Box } from "@mui/material";
+import { Controller, useFormContext } from "react-hook-form";
 
-const FormDateRangePicker: FC = () => {
+export interface FormDateRangePickerProps
+  extends React.HTMLProps<HTMLInputElement> {
+  name: string;
+  placeholder?: string;
+}
+
+const FormDateRangePicker: FC<FormDateRangePickerProps> = ({
+  name,
+  placeholder,
+}) => {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
+  const { control, register } = useFormContext();
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DateRangePicker
-        startText="Departure date"
-        endText="Arrival date"
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
-        inputFormat="dd/MM/yyyy"
-        renderInput={(startProps, endProps) => (
-          <>
-            <div className="flex flex-grow max-w-screen-sm justify-evenly items-center space-x-6">
-              <div className="p-1 pl-4 pt-2 outline-none rounded bg-zinc-700 border border-zinc-700 max-w-md">
-                <TextField
-                  variant="standard"
-                  className="bg-zinc-700 "
-                  {...startProps}
-                  InputLabelProps={{ shrink: true, style: { color: "white" } }}
-                  InputProps={{
-                    disableUnderline: true,
-                    style: { color: "white" },
-                  }}
-                />
+    <Controller
+      name={name}
+      control={control}
+      render={({ field }) => (
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DateRangePicker
+            {...field}
+            startText='Departure date'
+            endText='Arrival date'
+            minDate={new Date()}
+            value={value}
+            onChange={(e) => {
+              field.onChange(e);
+              setValue(e);
+            }}
+            clearable
+            inputFormat='dd/MM/yyyy'
+            renderInput={(startProps, endProps) => (
+              <div className='flex flex-grow  justify-evenly items-center space-x-2 lg:space-x-5'>
+                <div className='p-1 pl-4 w-full pt-2 outline-none rounded-sm bg-white shadow-md max-w-md'>
+                  <TextField
+                    variant='standard'
+                    className='bg-transparent w-full'
+                    {...startProps}
+                    InputLabelProps={{
+                      shrink: true,
+                      style: { color: "gray" },
+                    }}
+                    InputProps={{
+                      disableUnderline: true,
+                      style: { color: "black" },
+                    }}
+                  />
+                </div>
+                <div className='p-1 pl-4 w-full pt-2 outline-none rounded-sm bg-white shadow-md max-w-md'>
+                  <TextField
+                    variant='standard'
+                    className='bg-transparent w-full'
+                    {...endProps}
+                    InputLabelProps={{
+                      shrink: true,
+                      style: { color: "gray" },
+                    }}
+                    InputProps={{
+                      disableUnderline: true,
+                      style: { color: "black" },
+                    }}
+                  />
+                </div>
               </div>
-              <div className="p-1 pl-4 pt-2 outline-none rounded bg-zinc-700 border border-zinc-700 max-w-md">
-                <TextField
-                  variant="standard"
-                  className="bg-zinc-700 "
-                  {...endProps}
-                  InputLabelProps={{ shrink: true, style: { color: "white" } }}
-                  InputProps={{
-                    disableUnderline: true,
-                    style: { color: "white" },
-                  }}
-                />
-              </div>
-            </div>
-          </>
-        )}
-      />
-    </LocalizationProvider>
+            )}
+          />
+        </LocalizationProvider>
+      )}
+    />
   );
 };
 

@@ -1,8 +1,12 @@
 import React, { FC } from "react";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import ButtonProps from "./SubtractButton";
 
-const AddButton: FC = () => {
-  return <AddCircleOutlineOutlinedIcon className="text-gray-100" />;
+export interface AddButtonProps extends React.HTMLProps<HTMLInputElement> {
+  className: string;
+}
+const AddButton: FC<AddButtonProps> = ({ className }) => {
+  return <AddCircleOutlineOutlinedIcon className={className} />;
 };
 
 export default AddButton;
