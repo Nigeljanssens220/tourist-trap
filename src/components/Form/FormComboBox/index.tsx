@@ -4,6 +4,11 @@ import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 
+interface Location {
+  id: number;
+  name: string;
+}
+
 const locations = [
   { id: 1, name: "Amsterdam" },
   { id: 2, name: "London" },
@@ -65,7 +70,7 @@ const FormComboBox: FC<FormComboBoxProps> = ({ name, className, ...rest }) => {
               <div className='relative w-full text-left bg-white rounded-sm shadow-md cursor-default sm:text-sm overflow-hidden'>
                 <Combobox.Input
                   className='w-full focus:ring-0 active:ring-0 py-2 outline-none pl-3 pr-10 text-sm leading-5 text-gray-900'
-                  displayValue={(location) => location.name}
+                  displayValue={(location: Location) => location.name}
                   onChange={(event) => setQuery(event.target.value)}
                 />
               </div>
