@@ -27,7 +27,7 @@ const FormDateRangePicker: FC<FormDateRangePickerProps> = ({
           <DateRangePicker
             {...field}
             startText='Departure date'
-            endText='Arrival date'
+            endText='Return date'
             minDate={new Date()}
             value={value}
             onChange={(e) => {
@@ -37,8 +37,8 @@ const FormDateRangePicker: FC<FormDateRangePickerProps> = ({
             clearable
             inputFormat='dd/MM/yyyy'
             renderInput={(startProps, endProps) => (
-              <div className='flex flex-grow  justify-evenly items-center space-x-2 lg:space-x-5'>
-                <div className='p-1 pl-4 w-full pt-3 outline-none rounded-sm bg-white shadow-md max-w-md'>
+              <div className='flex flex-grow justify-evenly items-center space-x-2 gap-2 lg:space-x-2'>
+                <div className='p-1 pl-4 w-full pt-3 outline-none rounded-sm bg-white shadow-md '>
                   <TextField
                     {...startProps}
                     variant='standard'

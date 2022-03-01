@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import { useFormContext, Controller, useForm } from "react-hook-form";
 import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { CheckIcon } from "@heroicons/react/solid";
 
 interface Location {
   id: number;
@@ -26,10 +26,16 @@ const locations = [
 export interface FormComboBoxProps extends React.HTMLProps<HTMLInputElement> {
   name: string;
   className?: string;
+  placeholder: string;
 }
 
-const FormComboBox: FC<FormComboBoxProps> = ({ name, className, ...rest }) => {
-  const [selected, setSelected] = useState(locations[0]);
+const FormComboBox: FC<FormComboBoxProps> = ({
+  name,
+  className,
+  placeholder,
+  ...rest
+}) => {
+  const [selected, setSelected] = useState(undefined);
   const [query, setQuery] = useState("");
   const {
     control,
@@ -50,7 +56,8 @@ const FormComboBox: FC<FormComboBoxProps> = ({ name, className, ...rest }) => {
           location.name
             .toLowerCase()
             .replace(/\s+/g, "")
-            .includes(query.toLowerCase().replace(/\s+/g, ""))
+            // .includes(query.toLowerCase().replace(/\s+/g, ""))
+            .startsWith(query.toLowerCase().replace(/\s+/g, ""))
         );
 
   const selectedHandler = (event: any) => {
@@ -66,10 +73,12 @@ const FormComboBox: FC<FormComboBoxProps> = ({ name, className, ...rest }) => {
       render={({ field }) => (
         <div className='w-full z-50 '>
           <Combobox {...field} value={selected} onChange={selectedHandler}>
-            <div className='relative mt-1 bg-white '>
-              <div className='relative w-full text-left bg-white rounded-sm shadow-md cursor-default sm:text-sm overflow-hidden'>
+            <div className='relative bg-white items-center'>
+              <div className='relative w-full h-16 text-left bg-white rounded-sm shadow-md cursor-default sm:text-sm overflow-hidden'>
                 <Combobox.Input
-                  className='w-full focus:ring-0 active:ring-0 py-2 outline-none pl-3 pr-10 text-sm leading-5 text-gray-900'
+                  as='input'
+                  placeholder={placeholder}
+                  className='w-full focus:ring-0 h-full active:ring-0 py-2 outline-none pl-4 pr-10 text-sm leading-5  text-gray-900'
                   displayValue={(location: Location) => location.name}
                   onChange={(event) => setQuery(event.target.value)}
                 />

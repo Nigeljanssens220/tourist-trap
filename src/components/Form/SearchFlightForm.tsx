@@ -30,10 +30,10 @@ const FormSearchFlight: FC = () => {
             justifyContent='center'
           >
             <Grid item xs={12} sm={6}>
-              <FormComboBox name='origin' />
+              <FormComboBox name='origin' placeholder='Origin' />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <FormComboBox name='destination' />
+              <FormComboBox name='destination' placeholder='Destination' />
             </Grid>
             <Grid item xs={12} sm={12}>
               <FormDateRangePicker name='search-date-range' />
@@ -50,6 +50,7 @@ const FormSearchFlight: FC = () => {
                 name='number-children'
                 defaultNumber={0}
                 label='Number of children'
+                tooltip='Children aged 0-15 years. Age limits and policies for travelling with children may vary so please check with the airline before booking.'
               />
             </Grid>
             <Grid item xs={12} sm={8}>
