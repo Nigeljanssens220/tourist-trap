@@ -59,7 +59,7 @@ const FormSearchFlight: FC = () => {
                 name='number-children'
                 defaultNumber={0}
                 label='Number of children'
-                tooltip='Children aged 0-15 years. Age limits and policies for travelling with children may vary so please check with the airline before booking.'
+                tooltipText='Children aged 0-15 years. Age limits and policies for travelling with children may vary so please check with the airline before booking.'
               />
             </Grid>
             <Grid item xs={12} sm={8}>

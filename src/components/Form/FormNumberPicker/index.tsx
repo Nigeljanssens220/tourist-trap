@@ -11,14 +11,14 @@ export interface FormNumberPickerProps
   name: string;
   defaultNumber: number;
   label?: string;
-  tooltip?: string;
+  tooltipText?: string;
 }
 
 const FormNumberPicker: FC<FormNumberPickerProps> = ({
   name,
   label,
   defaultNumber,
-  tooltip,
+  tooltipText,
 }) => {
   const [number, setNumber] = useState(defaultNumber);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -45,11 +45,11 @@ const FormNumberPicker: FC<FormNumberPickerProps> = ({
       control={control}
       render={() => (
         <div className='flex flex-grow items-center justify-between '>
-          {tooltip ? (
+          {tooltipText ? (
             <div className='flex'>
               <h2 className='font-semibold text-md'>{label}</h2>
               <Tooltip
-                title={tooltip}
+                title={tooltipText}
                 arrow
                 open={showTooltip}
                 onOpen={() => setShowTooltip(true)}
@@ -58,7 +58,7 @@ const FormNumberPicker: FC<FormNumberPickerProps> = ({
                 TransitionProps={{ timeout: 400 }}
               >
                 <button onClick={() => setShowTooltip(!showTooltip)}>
-                  <HelpOutlineIcon className='text-sm ml-1' />
+                  <HelpOutlineIcon className='text-xs sm:text-sm pb-1 text-zinc-500 ml-1' />
                 </button>
               </Tooltip>
             </div>
