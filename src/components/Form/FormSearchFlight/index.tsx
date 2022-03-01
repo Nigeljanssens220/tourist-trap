@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import { useForm, FormProvider } from "react-hook-form";
-import FormDateRangePicker from "./FormDateRangePicker";
-import FormNumberPicker from "./FormNumberPicker";
-import FormComboBox from "./FormComboBox";
+import FormDateRangePicker from "../FormDateRangePicker";
+import FormNumberPicker from "../FormNumberPicker";
+import FormComboBox from "../FormComboBox";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import FormSubmit from "./FormSubmit";
+import FormSubmit from "../FormSubmit";
 
 const FormSearchFlight: FC = () => {
   const methods = useForm();

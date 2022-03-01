@@ -1,5 +1,5 @@
-import AddButton from "@/components/AddButton";
-import SubtractButton from "@/components/SubtractButton";
+import AddButton from "@/components/Button/AddButton";
+import SubtractButton from "@/components/Button/SubtractButton";
 import { FC, useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import Tooltip from "@mui/material/Tooltip";

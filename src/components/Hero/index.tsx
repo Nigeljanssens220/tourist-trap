@@ -2,9 +2,7 @@
 import Image from "next/image";
 import React, { FC } from "react";
 
-type Props = {};
-
-const Hero: FC = (props: Props) => {
+const Hero: FC = () => {
   return (
     <div className='bg-white overflow-hidden relative lg:flex lg:items-center max-w-screen-2xl mx-auto mb-5'>
       <div className='py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20'>

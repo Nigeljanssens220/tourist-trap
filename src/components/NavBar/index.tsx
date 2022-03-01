@@ -1,11 +1,9 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
-import Menu from "./Menu";
+import Menu from "../Menu";
 
-type Props = {};
-
-const NavBar: FC = (props: Props) => {
+const NavBar: FC = () => {
   const router = useRouter();
   const { data: session } = useSession();
 

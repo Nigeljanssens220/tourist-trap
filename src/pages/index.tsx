@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import FormSearchFlight from "@/components/Form/SearchFlightForm";
+import FormSearchFlight from "@/components/Form/FormSearchFlight";
 import Head from "next/head";
 
 export default function Home() {

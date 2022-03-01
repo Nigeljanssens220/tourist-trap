@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { FC, ReactElement, useState } from "react";
 import { useSession } from "next-auth/react";
-import LoginButton from "../LoginButton";
+import LoginButton from "@/components/Button/LoginButton";
 
 export interface MenuProps extends React.HTMLProps<HTMLInputElement> {
   children?: ReactElement<HTMLInputElement>;
