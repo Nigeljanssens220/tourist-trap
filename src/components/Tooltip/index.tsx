@@ -8,7 +8,10 @@ interface TooltipProps {
   transitionTime?: number;
 }
 
-const CustomTooltip: FC<TooltipProps> = ({ tooltipText, transitionTime }) => {
+const CustomTooltip: FC<TooltipProps> = ({
+  tooltipText,
+  transitionTime = 300,
+}) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   return (
@@ -19,7 +22,7 @@ const CustomTooltip: FC<TooltipProps> = ({ tooltipText, transitionTime }) => {
       onOpen={() => setShowTooltip(true)}
       onClose={() => setShowTooltip(false)}
       TransitionComponent={Fade}
-      TransitionProps={{ timeout: transitionTime ? transitionTime : 300 }}
+      TransitionProps={{ timeout: transitionTime }}
     >
       <button onClick={() => setShowTooltip(!showTooltip)}>
         <HelpOutlineIcon className='text-xs sm:text-sm pb-1 text-zinc-500 ml-1' />
