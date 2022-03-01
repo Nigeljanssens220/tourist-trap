@@ -21,6 +21,7 @@ const FormNumberPicker: FC<FormNumberPickerProps> = ({
   tooltip,
 }) => {
   const [number, setNumber] = useState(defaultNumber);
+  const [showTooltip, setShowTooltip] = useState(false);
   const { control, register, setValue } = useFormContext();
 
   useEffect(() => {
@@ -50,10 +51,15 @@ const FormNumberPicker: FC<FormNumberPickerProps> = ({
               <Tooltip
                 title={tooltip}
                 arrow
+                open={showTooltip}
+                onOpen={() => setShowTooltip(true)}
+                onClose={() => setShowTooltip(false)}
                 TransitionComponent={Fade}
                 TransitionProps={{ timeout: 400 }}
               >
-                <HelpOutlineIcon className='text-sm ml-1' />
+                <button onClick={() => setShowTooltip(!showTooltip)}>
+                  <HelpOutlineIcon className='text-sm ml-1' />
+                </button>
               </Tooltip>
             </div>
           ) : (
