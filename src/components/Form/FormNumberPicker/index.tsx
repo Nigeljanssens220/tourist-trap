@@ -1,10 +1,8 @@
 import AddButton from "@/components/Button/AddButton";
 import SubtractButton from "@/components/Button/SubtractButton";
+import CustomTooltip from "@/components/Tooltip";
 import { FC, useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import Tooltip from "@mui/material/Tooltip";
-import Fade from "@mui/material/Fade";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 export interface FormNumberPickerProps
   extends React.HTMLProps<HTMLInputElement> {
@@ -21,7 +19,6 @@ const FormNumberPicker: FC<FormNumberPickerProps> = ({
   tooltipText,
 }) => {
   const [number, setNumber] = useState(defaultNumber);
-  const [showTooltip, setShowTooltip] = useState(false);
   const { control, register, setValue } = useFormContext();
 
   useEffect(() => {
@@ -48,19 +45,7 @@ const FormNumberPicker: FC<FormNumberPickerProps> = ({
           {tooltipText ? (
             <div className='flex'>
               <h2 className='font-semibold text-md'>{label}</h2>
-              <Tooltip
-                title={tooltipText}
-                arrow
-                open={showTooltip}
-                onOpen={() => setShowTooltip(true)}
-                onClose={() => setShowTooltip(false)}
-                TransitionComponent={Fade}
-                TransitionProps={{ timeout: 400 }}
-              >
-                <button onClick={() => setShowTooltip(!showTooltip)}>
-                  <HelpOutlineIcon className='text-xs sm:text-sm pb-1 text-zinc-500 ml-1' />
-                </button>
-              </Tooltip>
+              <CustomTooltip tooltipText={tooltipText} />
             </div>
           ) : (
             <h2 className='font-semibold text-md'>{label}</h2>
