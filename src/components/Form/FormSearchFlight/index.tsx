@@ -6,6 +6,7 @@ import FormComboBox from "../FormComboBox";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import FormSubmit from "../FormSubmit";
+import iatalocations from "@/utils/iataLocations";
 
 const FormSearchFlight: FC = () => {
   const methods = useForm();
@@ -30,10 +31,18 @@ const FormSearchFlight: FC = () => {
             justifyContent='center'
           >
             <Grid item xs={12} sm={6}>
-              <FormComboBox name='origin' placeholder='Origin' />
+              <FormComboBox
+                name='origin'
+                placeholder='Origin'
+                autoCompleteOptions={iatalocations}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <FormComboBox name='destination' placeholder='Destination' />
+              <FormComboBox
+                name='destination'
+                placeholder='Destination'
+                autoCompleteOptions={iatalocations}
+              />
             </Grid>
             <Grid item xs={12} sm={12}>
               <FormDateRangePicker name='search-date-range' />

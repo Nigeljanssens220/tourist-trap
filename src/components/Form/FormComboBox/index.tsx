@@ -1,38 +1,22 @@
 import React, { FC, useEffect } from "react";
-import { useFormContext, Controller, useForm } from "react-hook-form";
+import { useFormContext, Controller } from "react-hook-form";
 import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/solid";
-
-interface Location {
-  id: number;
-  name: string;
-}
-
-const locations = [
-  { id: 1, name: "Amsterdam" },
-  { id: 2, name: "London" },
-  { id: 3, name: "New York" },
-  { id: 4, name: "Denpasar" },
-  { id: 5, name: "Stockholm" },
-  { id: 7, name: "Auckland" },
-  { id: 8, name: "Jakarta" },
-  { id: 9, name: "Paris" },
-  { id: 10, name: "Berlin" },
-  { id: 11, name: "Barcelona" },
-  { id: 12, name: "Lisbon" },
-];
+import { AutoCompleteProps } from "@/utils/iataLocations";
 
 export interface FormComboBoxProps extends React.HTMLProps<HTMLInputElement> {
   name: string;
-  className?: string;
   placeholder: string;
+  autoCompleteOptions: AutoCompleteProps[];
+  className?: string;
 }
 
 const FormComboBox: FC<FormComboBoxProps> = ({
   name,
-  className,
   placeholder,
+  autoCompleteOptions,
+  className,
   ...rest
 }) => {
   const [selected, setSelected] = useState(undefined);
@@ -46,14 +30,14 @@ const FormComboBox: FC<FormComboBoxProps> = ({
 
   useEffect(() => {
     register(name);
-    setValue(name, locations[0].name);
+    setValue(name, "");
   }, [name, register, setValue]);
 
-  const filteredLocation =
+  const filteredOptions =
     query === ""
-      ? locations
-      : locations.filter((location) =>
-          location.name
+      ? autoCompleteOptions
+      : autoCompleteOptions.filter((option) =>
+          option.label
             .toLowerCase()
             .replace(/\s+/g, "")
             // .includes(query.toLowerCase().replace(/\s+/g, ""))
@@ -62,7 +46,8 @@ const FormComboBox: FC<FormComboBoxProps> = ({
 
   const selectedHandler = (event: any) => {
     setSelected(event);
-    setValue(name, event?.name);
+    console.log(event?.label, event?.value);
+    setValue(name, event?.value);
   };
 
   return (
@@ -79,7 +64,9 @@ const FormComboBox: FC<FormComboBoxProps> = ({
                   as='input'
                   placeholder={placeholder}
                   className='w-full focus:ring-0 h-full active:ring-0 py-2 outline-none pl-4 pr-10 text-sm leading-5  text-gray-900'
-                  displayValue={(location: Location) => location.name}
+                  displayValue={(option: AutoCompleteProps) =>
+                    option.label + " " + `(${option.value})`
+                  }
                   onChange={(event) => setQuery(event.target.value)}
                 />
               </div>
@@ -91,20 +78,20 @@ const FormComboBox: FC<FormComboBoxProps> = ({
                 afterLeave={() => setQuery("")}
               >
                 <Combobox.Options className='absolute w-full py-1 mt-1 overflow-auto no-scrollbar z-50 text-base bg-white  shadow-lg max-h-60 ring-1 ring-black  sm:text-sm'>
-                  {filteredLocation.length === 0 && query !== "" ? (
+                  {filteredOptions.length === 0 && query !== "" ? (
                     <div className='cursor-default select-none relative py-2 px-4 text-gray-700'>
                       Nothing found.
                     </div>
                   ) : (
-                    filteredLocation.map((location) => (
+                    filteredOptions.map((option) => (
                       <Combobox.Option
-                        key={location.id}
+                        key={option.value}
                         className={({ active }) =>
                           `cursor-default select-none relative py-2 pl-10 pr-4 ${
                             active ? "text-white bg-zinc-700" : "text-gray-900"
                           }`
                         }
-                        value={location}
+                        value={option}
                       >
                         {({ selected, active }) => (
                           <>
@@ -113,7 +100,7 @@ const FormComboBox: FC<FormComboBoxProps> = ({
                                 selected ? "font-medium" : "font-normal"
                               }`}
                             >
-                              {location.name}
+                              {option.label + " " + `(${option.value})`}
                             </span>
                             {selected ? (
                               <span
