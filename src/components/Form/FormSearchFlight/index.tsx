@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { FC, FormEvent, useCallback } from "react";
+import React, { FC } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import FormDateRangePicker from "../FormDateRangePicker";
 import FormNumberPicker from "../FormNumberPicker";
@@ -8,8 +8,8 @@ import FormComboBox from "../FormComboBox";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import FormSubmit from "../FormSubmit";
-import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
+import format from "date-fns/format";
 
 interface SubmitResults {
   origin: string;
@@ -19,27 +19,44 @@ interface SubmitResults {
   numberChildren: number;
 }
 
-const FormSearchFlight: FC = () => {
+interface FormSearchFlightProps {
+  href?: string;
+}
+
+const FormSearchFlight: FC<FormSearchFlightProps> = ({ href }) => {
   const router = useRouter();
-  const { client } = trpc.useContext();
   const methods = useForm();
 
   const onSubmitHandler = async (data: SubmitResults) => {
     const passengers = Array(data.numberAdults).fill({
       type: "adult",
     });
-    console.log(data);
 
-    // const locations = await client.query("duffel.get-flight-offers", {
-    //   cabin_class: "economy",
-    //   return_offers: true,
-    //   passengers: passengers,
-    //   slices: [
-    //     { origin: "LHR", destination: "JFK", departure_date: "2022-03-15" },
-    //   ],
-    // });
-
-    // console.log(locations);
+    router.push(
+      {
+        pathname: href,
+        query: {
+          // cabin_class: "economy", // TODO: Add cabin_class options in form
+          return_offers: true, // Directly return all offers requested
+          passengers: JSON.stringify(passengers),
+          slices: JSON.stringify([
+            // Outward flight slice
+            {
+              origin: data.origin,
+              destination: data.destination,
+              departure_date: format(data.searchDateRange[0], "yyyy-MM-dd"), // Departure date
+            },
+            // Return flight slice
+            {
+              origin: data.destination,
+              destination: data.origin,
+              departure_date: format(data.searchDateRange[1], "yyyy-MM-dd"), // Return date
+            },
+          ]),
+        },
+      },
+      href
+    );
   };
 
   return (
@@ -49,11 +66,7 @@ const FormSearchFlight: FC = () => {
         square
         className='w-screen max-w-screen-md bg-zinc-200'
       >
-        <form
-          onSubmit={methods.handleSubmit(onSubmitHandler)}
-          noValidate
-          className=''
-        >
+        <form onSubmit={methods.handleSubmit(onSubmitHandler)} className=''>
           <Grid
             container
             spacing={2}

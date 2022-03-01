@@ -1,14 +1,7 @@
 import AddButton from "@/components/Button/AddButton";
 import SubtractButton from "@/components/Button/SubtractButton";
 import CustomTooltip from "@/components/Tooltip";
-import {
-  ButtonHTMLAttributes,
-  DetailedHTMLProps,
-  FC,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 export interface FormNumberPickerProps
@@ -43,39 +36,13 @@ const FormNumberPicker: FC<FormNumberPickerProps> = ({
   );
 
   const handleSubtractNumber = useCallback(
-    async (event: React.FormEvent<HTMLButtonElement>) => {
+    (event: React.FormEvent<HTMLButtonElement>) => {
       event.preventDefault();
       setNumber(number - 1);
       setValue(name, number - 1);
     },
     [setNumber, setValue, name, number]
   );
-
-  // const handleAddNumber = (e) => {
-  //   e.preventDefault();
-  //   setNumber(number + 1);
-  //   setValue(name, number + 1);
-  // };
-
-  // const handleSubtractNumber = (e) => {
-  //   e.preventDefault();
-  //   setNumber(number - 1);
-  //   setValue(name, number - 1);
-  // };
-
-  // const handleSubmit = useCallback(
-  //   async (event: React.FormEvent<HTMLFormElement>) => {
-  //     event.preventDefault();
-  //     const data = new FormData(event.currentTarget);
-  //     console.log(data.get("origin"));
-
-  //     const locations = await client.query(
-  //       "amadeus.get-location",
-  //       data.get("origin") as string
-  //     );
-  //   },
-  //   [client]
-  // );
 
   return (
     <Controller

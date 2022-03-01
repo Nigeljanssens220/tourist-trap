@@ -20,7 +20,7 @@ export const duffelRouter = createRouter().query("get-flight-offers", {
         z.object({ age: z.number() }),
       ])
     ),
-    cabin_class: z.string(),
+    cabin_class: z.string().optional(),
   }),
   async resolve({ input }) {
     const flightOffers = await duffel.offerRequests.create({

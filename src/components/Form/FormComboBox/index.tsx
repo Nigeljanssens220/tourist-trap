@@ -46,7 +46,6 @@ const FormComboBox: FC<FormComboBoxProps> = ({
 
   const selectedHandler = (event: any) => {
     setSelected(event);
-    console.log(event?.label, event?.value);
     setValue(name, event?.value);
   };
 

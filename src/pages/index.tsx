@@ -11,7 +11,7 @@ export default function Home() {
       </Head>
       <Hero />
       <div className='max-w-screen-2xl'>
-        <FormSearchFlight />
+        <FormSearchFlight href='/flights' />
       </div>
     </div>
   );
