@@ -9,7 +9,7 @@ const Hero: FC = () => {
         <h2 className='text-center md:text-left text-3xl font-semibold text-black sm:text-4xl'>
           <span className='block'>Mother hearth hosts your travels</span>
         </h2>
-        <p className='text-center md:text-left text-md mt-4 text-gray-400'>
+        <p className='text-center md:text-left sm:max-w-3xl text-md mt-4 text-gray-400'>
           The state of Utah in the United States is home to lots of beautiful
           National parks, Bryce national canyon park ranks as three of the most
           magnificient &amp; awe inspiring.
