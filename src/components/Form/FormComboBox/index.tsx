@@ -55,30 +55,28 @@ const FormComboBox: FC<FormComboBoxProps> = ({
       control={control}
       required={true}
       render={({ field }) => (
-        <div className='w-full z-50 '>
+        <div className="w-full z-50 ">
           <Combobox {...field} value={selected} onChange={selectedHandler}>
-            <div className='relative bg-white items-center'>
-              <div className='relative w-full h-16 text-left bg-white rounded-sm shadow-md cursor-default sm:text-sm overflow-hidden'>
+            <div className="relative bg-white items-center">
+              <div className="relative w-full h-16 text-left bg-white rounded-sm shadow-md cursor-default sm:text-sm overflow-hidden">
                 <Combobox.Input
-                  as='input'
+                  as="input"
                   placeholder={placeholder}
-                  className='w-full focus:ring-0 h-full active:ring-0 py-2 outline-none pl-4 pr-10 text-sm leading-5  text-gray-900'
-                  displayValue={(option: AutoCompleteProps) =>
-                    option.label + " " + `(${option.value})`
-                  }
+                  className="w-full focus:ring-0 h-full active:ring-0 py-2 outline-none pl-4 pr-10 text-sm leading-5  text-gray-900"
+                  displayValue={(option: AutoCompleteProps) => option.label}
                   onChange={(event) => setQuery(event.target.value)}
                 />
               </div>
               <Transition
                 as={Fragment}
-                leave='transition ease-in duration-100'
-                leaveFrom='opacity-100'
-                leaveTo='opacity-0'
+                leave="transition ease-in duration-100"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
                 afterLeave={() => setQuery("")}
               >
-                <Combobox.Options className='absolute w-full py-1 mt-1 overflow-auto no-scrollbar z-50 text-base bg-white  shadow-lg max-h-60 ring-1 ring-black  sm:text-sm'>
+                <Combobox.Options className="absolute w-full py-1 mt-1 overflow-auto no-scrollbar z-50 text-base bg-white  shadow-lg max-h-60 ring-1 ring-black  sm:text-sm">
                   {filteredOptions.length === 0 && query !== "" ? (
-                    <div className='cursor-default select-none relative py-2 px-4 text-gray-700'>
+                    <div className="cursor-default select-none relative py-2 px-4 text-zinc-700">
                       Nothing found.
                     </div>
                   ) : (
@@ -87,7 +85,7 @@ const FormComboBox: FC<FormComboBoxProps> = ({
                         key={option.value}
                         className={({ active }) =>
                           `cursor-default select-none relative py-2 pl-10 pr-4 ${
-                            active ? "text-white bg-zinc-700" : "text-gray-900"
+                            active ? "text-white bg-zinc-800" : "text-gray-900"
                           }`
                         }
                         value={option}
@@ -99,7 +97,16 @@ const FormComboBox: FC<FormComboBoxProps> = ({
                                 selected ? "font-medium" : "font-normal"
                               }`}
                             >
-                              {option.label + " " + `(${option.value})`}
+                              {option.label}
+                            </span>
+                            <span
+                              className={`block truncate ${
+                                selected
+                                  ? "font-medium text-zinc-300 "
+                                  : "font-normal text-zinc-700 "
+                              }`}
+                            >
+                              {option.value}
                             </span>
                             {selected ? (
                               <span
@@ -108,8 +115,8 @@ const FormComboBox: FC<FormComboBoxProps> = ({
                                 }`}
                               >
                                 <CheckIcon
-                                  className='w-5 h-5'
-                                  aria-hidden='true'
+                                  className="w-5 h-5"
+                                  aria-hidden="true"
                                 />
                               </span>
                             ) : null}

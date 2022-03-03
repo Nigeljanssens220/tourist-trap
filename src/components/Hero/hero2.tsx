@@ -2,41 +2,41 @@ import React from "react";
 
 const Hero2 = () => {
   return (
-    <div className='relative w-full max-w-screen-2xl '>
-      <div className='absolute inset-x-0 bottom-0 h-1/2 ' />
-      <div className='mx-auto sm:px-6 lg:px-8 '>
-        <div className='relative   sm:rounded-2xl '>
-          <div className='absolute inset-0'>
+    <div className="relative w-full max-w-screen-2xl ">
+      <div className="absolute inset-x-0 bottom-0 h-1/2 " />
+      <div className="mx-auto sm:px-6 lg:px-8 ">
+        <div className="relative  sm:rounded-2xl ">
+          <div className="absolute inset-0">
             <img
-              className='h-full w-full object-cover '
-              src='/mountains-grayscale.jpg'
+              className="h-full w-full object-cover "
+              src="/mountains-grayscale.jpg"
               //   src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2830&q=80&sat=-100'
-              alt='People working on laptops'
+              alt="Mountain Range"
             />
-            <div className='absolute inset-0 ' />
+            <div className="absolute inset-0 " />
           </div>
-          <div className='relative items-center justify-center mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8'>
-            <h2 className='text-center text-3xl font-semibold text-black sm:text-5xl'>
-              <span className='block'>Mother hearth hosts your travels</span>
+          <div className="relative items-center justify-center mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
+            <h2 className="text-center text-3xl font-semibold text-black sm:text-5xl">
+              <span className="block">Mother hearth hosts your travels</span>
             </h2>
-            <p className='text-center max-w-lg mx-auto sm:max-w-3xl text-md mt-4 text-gray-100'>
+            <p className="text-center max-w-lg mx-auto sm:max-w-3xl text-md mt-4 text-zinc-700 text-shadow">
               The state of Utah in the United States is home to lots of
               beautiful National parks, Bryce national canyon park ranks as
               three of the most magnificient &amp; awe inspiring.
             </p>
-            <div className='mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center'>
-              <div className='space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5'>
+            <div className="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+              <div className="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
                 <a
-                  href='#'
-                  className='flex items-center justify-center px-4 py-3 text-base font-medium rounded-md  text-black bg-white hover:bg-gray-200-50 sm:px-8'
+                  href="#formSearchFlight"
+                  className="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md  text-black bg-white hover:bg-gray-200-50 bg-opacity-80 hover:bg-opacity-60 sm:px-8"
                 >
-                  Get started
+                  Search flights
                 </a>
                 <a
-                  href='#'
-                  className='flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-white bg-black bg-opacity-80 hover:bg-opacity-70 sm:px-8'
+                  href="#"
+                  className="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-white bg-black bg-opacity-80 hover:bg-opacity-60 sm:px-8"
                 >
-                  Live demo
+                  Get inspired
                 </a>
               </div>
             </div>

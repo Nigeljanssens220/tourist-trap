@@ -11,7 +11,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <SessionProvider>
       <Head>
         <title>Tourist Trap</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />
       <Component {...pageProps} />
