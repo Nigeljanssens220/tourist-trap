@@ -2,14 +2,22 @@ import React, { FC, ReactElement } from "react";
 import classNames from "classnames";
 
 export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
-  name: string;
   className: string;
+  name?: string;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
-const Button: FC<ButtonProps> = ({ name, className, onClick }) => {
+const Button: FC<ButtonProps> = ({
+  name,
+  className,
+  type,
+  onClick,
+  children,
+}) => {
   return (
     <div>
       <button
+        type={type}
         onClick={onClick}
         className={classNames(
           className,
@@ -18,6 +26,7 @@ const Button: FC<ButtonProps> = ({ name, className, onClick }) => {
       >
         {name}
       </button>
+      {children}
     </div>
   );
 };
