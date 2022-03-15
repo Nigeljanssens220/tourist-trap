@@ -1,15 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { trpc } from "@/utils/trpc";
+import { Offer, OfferRequest } from "@duffel/api";
+import { NextPage } from "next";
+import { useCallback, useEffect, useState } from "react";
+
 import SkeletonFlightCard from "@/components/Card/SkeletonFlightCard";
 import ThreeSectionCard from "@/components/Card/ThreeSectionCard";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
-import { trpc } from "@/utils/trpc";
-import {
-  CreateOfferRequest,
-  CreateOfferRequestQueryParameters,
-  OfferRequest,
-} from "@duffel/api";
-import { NextPage } from "next";
-import { useCallback, useEffect, useState } from "react";
+
+import { flightProperties } from "@/utils/duffel";
 
 interface FlightsProps {
   origin: string;
@@ -30,7 +30,15 @@ const Flights: NextPage<FlightsProps> = ({
 }) => {
   const [loading, setLoading] = useState(true);
   const [offerRequest, setOfferRequest] = useState<OfferRequest>();
+  const [cheapestFlight, setCheapestFlight] =
+    useState<Omit<Offer, "available_services">>();
+  const [fastestFlight, setFastestFlight] =
+    useState<Omit<Offer, "available_services">>();
+  const [lowestEmissionsFlight, setLowestEmissionsFlight] =
+    useState<Omit<Offer, "available_services">>();
+
   const { client } = trpc.useContext();
+
   const params = {
     slices: [
       {
@@ -46,8 +54,17 @@ const Flights: NextPage<FlightsProps> = ({
     ],
     passengers: Array(Number(numberAdults)).fill({ type: "adult" }),
     cabin_class: "economy",
-    return_offers: false,
+    return_offers: true,
   };
+
+  const getFlightProperties = useCallback((offerRequest: OfferRequest) => {
+    const { cheapestFlight, fastestFlight, lowestEmissionsFlight } =
+      flightProperties(offerRequest);
+
+    setCheapestFlight(cheapestFlight);
+    setFastestFlight(fastestFlight);
+    setLowestEmissionsFlight(lowestEmissionsFlight);
+  }, []);
 
   const fetchOfferRequest = useCallback(async () => {
     const data = await client.query("duffel.get-flight-offers", {
@@ -55,8 +72,9 @@ const Flights: NextPage<FlightsProps> = ({
     });
 
     setOfferRequest(data);
+    getFlightProperties(data);
     setLoading(false);
-  }, []);
+  }, [getFlightProperties]);
 
   useEffect(() => {
     fetchOfferRequest().catch(console.error);
@@ -74,12 +92,7 @@ const Flights: NextPage<FlightsProps> = ({
           textWeight="thin"
           className="text-gray-500 lg:max-w-screen-lg md:text-md lg:text-lg"
         >
-          This is the section text. This text is supposed to contain information
-          about the city the user is looking to book tickets for. This is the
-          section text. This text is supposed to contain information about the
-          city the user is looking to book tickets for. This is the section
-          text. This text is supposed to contain information about the city the
-          user is looking to book tickets for.
+          {loading ? "loading" : cheapestFlight?.total_amount}
         </Section>
         <SkeletonFlightCard />
       </div>
