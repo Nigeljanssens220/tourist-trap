@@ -3,14 +3,19 @@ import ThreeSectionCard from "@/components/Card/ThreeSectionCard";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 import { trpc } from "@/utils/trpc";
+import {
+  CreateOfferRequest,
+  CreateOfferRequestQueryParameters,
+  OfferRequest,
+} from "@duffel/api";
 import { NextPage } from "next";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface FlightsProps {
   origin: string;
   destination: string;
   numberAdults: string;
-  numberChildren: string;
+  // numberChildren: string;
   departure_date: string;
   return_date: string;
 }
@@ -19,15 +24,15 @@ const Flights: NextPage<FlightsProps> = ({
   origin,
   destination,
   numberAdults,
-  numberChildren,
+  // numberChildren,
   departure_date,
   return_date,
 }) => {
-  const [offerRequestId, setOfferRequestId] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [offerRequest, setOfferRequest] = useState<OfferRequest>();
   const { client } = trpc.useContext();
-
-  useCallback(async () => {
-    const slices = [
+  const params = {
+    slices: [
       {
         origin: origin,
         destination: destination,
@@ -38,23 +43,24 @@ const Flights: NextPage<FlightsProps> = ({
         destination: origin,
         departure_date: return_date,
       },
-    ];
-    const passengers = Array(Number(numberAdults)).fill({ type: "adult" });
-    const params = {
-      slices: slices,
-      passengers: passengers,
-      cabin_class: "economy",
-      return_offers: false,
-    };
-    console.log(params);
+    ],
+    passengers: Array(Number(numberAdults)).fill({ type: "adult" }),
+    cabin_class: "economy",
+    return_offers: false,
+  };
 
-    const offerRequest = await client.query("duffel.get-flight-offers", {
+  const fetchOfferRequest = useCallback(async () => {
+    const data = await client.query("duffel.get-flight-offers", {
       ...params,
     });
-    setOfferRequestId(offerRequest.id);
-  }, [client, origin, destination, numberAdults, departure_date, return_date]);
 
-  console.log(offerRequestId);
+    setOfferRequest(data);
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchOfferRequest().catch(console.error);
+  }, [fetchOfferRequest]);
 
   return (
     <div className="max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-screen-2xl mx-auto">

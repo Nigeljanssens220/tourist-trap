@@ -28,7 +28,7 @@ const Hero2 = () => {
               <div className="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
                 <a
                   href="#formSearchFlight"
-                  className="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md  text-black bg-white hover:bg-gray-200-50 bg-opacity-80 hover:bg-opacity-60 sm:px-8"
+                  className="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md  text-black bg-white hover:bg-gray-200-50 bg-opacity-90 hover:bg-opacity-70 sm:px-8"
                 >
                   Search flights
                 </a>
