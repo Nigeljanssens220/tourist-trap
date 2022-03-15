@@ -32,4 +32,21 @@ export const amadeusRouter = createRouter()
       console.log(locations);
       return locations;
     },
+  })
+  .query("get-flight-inspiration", {
+    input: z.object({
+      origin: z.string(),
+      duration: z.string().nullable(),
+      departureDate: z.string().nullable(),
+      maxPrice: z.number().int().nullable(),
+      nonStop: z.boolean().nullable(), // non-stop = no transfers, only direct flights
+    }),
+    async resolve({ input }) {
+      console.log(input);
+      const flightInspiration = amadeus.shopping.flightDestinations.get({
+        ...input,
+      });
+
+      return flightInspiration.result.data;
+    },
   });
