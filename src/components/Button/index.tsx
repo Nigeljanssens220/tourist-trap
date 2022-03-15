@@ -1,26 +1,16 @@
 import React, { FC, ReactElement } from "react";
 import classNames from "classnames";
-import { signIn, signOut } from "next-auth/react";
 
-export interface LoginButtonProps extends React.HTMLProps<HTMLInputElement> {
+export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   name: string;
   className: string;
-  loginState: boolean;
-  children?: ReactElement<HTMLInputElement>;
 }
 
-const LoginButton: FC<LoginButtonProps> = ({
-  name,
-  className,
-  loginState,
-  children,
-}) => {
+const Button: FC<ButtonProps> = ({ name, className, onClick }) => {
   return (
     <div>
       <button
-        onClick={() => {
-          loginState ? signOut() : signIn();
-        }}
+        onClick={onClick}
         className={classNames(
           className,
           "py-2 px-4 hover:bg-zinc-800 mb-1 mr-4 transition ease-in duration-100 text-center shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black rounded-md"
@@ -28,9 +18,8 @@ const LoginButton: FC<LoginButtonProps> = ({
       >
         {name}
       </button>
-      {children}
     </div>
   );
 };
 
-export default LoginButton;
+export default Button;
