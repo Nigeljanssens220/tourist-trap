@@ -2,10 +2,9 @@ import CustomTooltip from "@/components/Tooltip";
 import React, { FC, useCallback, useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import SubtractIcon from "@/components/Icon/SubtractIcon";
-import AddIcon from "@/components/Icon/AddButton";
+import AddIcon from "@/components/Icon/AddIcon";
 
-export interface FormNumberPickerProps
-  extends React.HTMLProps<HTMLInputElement> {
+export interface FormNumberPickerProps {
   name: string;
   defaultNumber: number;
   label?: string;

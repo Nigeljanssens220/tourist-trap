@@ -8,13 +8,9 @@ import { Controller, useFormContext } from "react-hook-form";
 export interface FormDateRangePickerProps
   extends React.HTMLProps<HTMLInputElement> {
   name: string;
-  placeholder?: string;
 }
 
-const FormDateRangePicker: FC<FormDateRangePickerProps> = ({
-  name,
-  placeholder,
-}) => {
+const FormDateRangePicker: FC<FormDateRangePickerProps> = ({ name }) => {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
   const { control, register } = useFormContext();
 
@@ -26,8 +22,8 @@ const FormDateRangePicker: FC<FormDateRangePickerProps> = ({
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DateRangePicker
             {...field}
-            startText='Departure date'
-            endText='Return date'
+            startText="Departure date"
+            endText="Return date"
             minDate={new Date()}
             value={value}
             onChange={(e) => {
@@ -35,14 +31,14 @@ const FormDateRangePicker: FC<FormDateRangePickerProps> = ({
               setValue(e);
             }}
             clearable
-            inputFormat='dd/MM/yyyy'
+            inputFormat="dd/MM/yyyy"
             renderInput={(startProps, endProps) => (
-              <div className='flex flex-grow justify-evenly items-center space-x-2 gap-2 lg:space-x-2'>
-                <div className='p-1 pl-4 w-full pt-3 outline-none rounded-sm bg-white shadow-md '>
+              <div className="flex flex-grow justify-evenly items-center space-x-2 gap-2 lg:space-x-2">
+                <div className="p-1 pl-4 w-full pt-3 outline-none rounded-sm bg-white shadow-md ">
                   <TextField
                     {...startProps}
-                    variant='standard'
-                    className='bg-transparent w-full'
+                    variant="standard"
+                    className="bg-transparent w-full"
                     InputLabelProps={{
                       shrink: true,
                       style: { color: "gray" },
@@ -53,11 +49,11 @@ const FormDateRangePicker: FC<FormDateRangePickerProps> = ({
                     }}
                   />
                 </div>
-                <div className='p-1 pl-4 w-full pt-3 outline-none rounded-sm bg-white shadow-md max-w-md'>
+                <div className="p-1 pl-4 w-full pt-3 outline-none rounded-sm bg-white shadow-md max-w-md">
                   <TextField
                     {...endProps}
-                    variant='standard'
-                    className='bg-transparent w-full'
+                    variant="standard"
+                    className="bg-transparent w-full"
                     InputLabelProps={{
                       shrink: true,
                       style: { color: "gray" },
