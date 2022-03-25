@@ -6,6 +6,7 @@ import { CheckIcon } from "@heroicons/react/solid";
 import { AutoCompleteProps } from "@/utils/iataLocations";
 
 export interface FormComboBoxProps extends React.HTMLProps<HTMLInputElement> {
+  id: string;
   name: string;
   placeholder: string;
   autoCompleteOptions: AutoCompleteProps[];
@@ -13,6 +14,7 @@ export interface FormComboBoxProps extends React.HTMLProps<HTMLInputElement> {
 }
 
 const FormComboBox: FC<FormComboBoxProps> = ({
+  id,
   name,
   placeholder,
   autoCompleteOptions,
