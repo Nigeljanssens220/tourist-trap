@@ -4,13 +4,14 @@ import { Offer, OfferRequest } from "@duffel/api";
 import { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
 
-import SkeletonFlightCard from "@/components/Animations/Loading/SkeletonCard";
-import ThreeSectionCard from "@/components/Card/ThreeSectionCard";
+import SkeletonCardLoading from "@/components/Animations/Loading/SkeletonCardLoading";
+import ThreeSectionCardLoading from "@/components/Animations/Loading/ThreeSectionLoading";
 import Section from "@/components/Section";
 import Typography from "@/components/Typography";
 
 import { flightProperties } from "@/utils/duffel";
 import Spinner from "@/components/Animations/Loading/Spinner";
+import ThreeSectionCard from "@/components/Card/ThreeSectionCard";
 
 interface FlightsProps {
   origin: string;
@@ -20,6 +21,8 @@ interface FlightsProps {
   departure_date: string;
   return_date: string;
 }
+
+const numberFlightCards: number = 10;
 
 const Flights: NextPage<FlightsProps> = ({
   origin,
@@ -82,8 +85,25 @@ const Flights: NextPage<FlightsProps> = ({
   // }, [fetchOfferRequest]);
 
   return (
-    <div className="h-full mt-52 items-center justify-center max-w-screen-2xl mx-auto flex ">
-      <Spinner />
+    <div className='flex flex-col max-w-screen-2xl mx-auto border-4 items-center'>
+      <Typography weight='thin' variant='h3' className='mx-5'>
+        Flights from {origin} to {destination}
+      </Typography>
+      <div className='mt-8 max-w-screen-2xl mx-auto '>
+        {loading ? (
+          <div className='flex flex-col items-center space-y-4 '>
+            <ThreeSectionCard />
+            <ThreeSectionCardLoading />
+            {Array.from({ length: numberFlightCards }).map((_, index) => (
+              <div key={index}>
+                <SkeletonCardLoading />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
     </div>
 
     // <div className="max-w-sm  md:max-w-2xl lg:max-w-screen-2xl mx-auto">

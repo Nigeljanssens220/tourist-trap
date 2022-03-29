@@ -3,17 +3,10 @@ import classNames from "classnames";
 
 export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   className: string;
-  name?: string;
   type?: "button" | "submit" | "reset" | undefined;
 }
 
-const Button: FC<ButtonProps> = ({
-  name,
-  className,
-  type,
-  onClick,
-  children,
-}) => {
+const Button: FC<ButtonProps> = ({ className, type, onClick, children }) => {
   return (
     <div>
       <button
@@ -21,12 +14,11 @@ const Button: FC<ButtonProps> = ({
         onClick={onClick}
         className={classNames(
           className,
-          "py-2 px-4 hover:bg-zinc-800 mb-1 mr-4 transition ease-in duration-100 text-center shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black rounded-md"
+          "py-2 px-4 hover:bg-zinc-800 transition ease-in duration-100 text-center shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black rounded-md"
         )}
       >
-        {name}
+        {children}
       </button>
-      {children}
     </div>
   );
 };

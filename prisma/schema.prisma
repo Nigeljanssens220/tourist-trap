@@ -1,13 +1,13 @@
-datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
-generator client {
-  provider = "prisma-client-js"
-  // previewFeatures = ["referentialIntegrity"]
-
-
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_URL")
+  referentialIntegrity = "prisma"
 }
 
 model Account {
@@ -47,6 +47,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  Booking       Booking[]
 }
 
 model VerificationToken {
@@ -55,6 +56,17 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Booking {
+  id       String   @id @default(cuid())
+  userId   String
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  status   String
+  amount   Decimal
+  currency String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 // model Transaction {

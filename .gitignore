@@ -2,8 +2,8 @@
 # server 
 /server
 /trash
-
-
+src/backend/router/booking.ts
+prisma/migrations/20220329133117_add_booking_table/
 # dependencies
 /node_modules
 /.pnp
