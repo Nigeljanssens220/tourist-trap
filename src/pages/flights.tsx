@@ -86,9 +86,27 @@ const Flights: NextPage<FlightsProps> = ({
 
   return (
     <div className='flex flex-col max-w-screen-2xl mx-auto border-4 items-center'>
-      <Typography weight='thin' variant='h3' className='mx-5'>
+      <Typography weight='thin' variant='h3' component='h3' className='mx-5'>
         Flights from {origin} to {destination}
       </Typography>
+      <div className='flex'>
+        <Typography
+          weight='thin'
+          variant='md'
+          component='p'
+          className='mx-5 text-zinc-400'
+        >
+          Departure {departure_date}
+        </Typography>
+        <Typography
+          weight='thin'
+          variant='md'
+          component='p'
+          className='mx-5 text-zinc-400'
+        >
+          Return {return_date}
+        </Typography>
+      </div>
       <div className='mt-8 max-w-screen-2xl mx-auto '>
         {loading ? (
           <div className='flex flex-col items-center space-y-4 '>

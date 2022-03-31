@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import FacebookProvider from "next-auth/providers/facebook";
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
+import AzureADProvider from "next-auth/providers/azure-ad";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 //@ts-ignore
 import { prisma } from "@/backend/utils/prisma";
@@ -27,10 +28,13 @@ export default NextAuth({
     //   clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     // }),
     GoogleProvider({
-      //@ts-ignore
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      //@ts-ignore
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+    AzureADProvider({
+      clientId: process.env.AZURE_AD_CLIENT_ID!,
+      clientSecret: process.env.AZURE_AD_CLIENT_SECRET!,
+      tenantId: process.env.AZURE_AD_TENANT_ID,
     }),
   ],
   secret: process.env.JWT_SECRET,
