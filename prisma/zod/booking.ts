@@ -1,5 +1,5 @@
-import * as z from "zod";
-import { CompleteUser, UserModel } from "./index";
+import * as z from "zod"
+import { CompleteUser, UserModel } from "./index"
 
 export const _BookingModel = z.object({
   id: z.string(),
@@ -9,10 +9,10 @@ export const _BookingModel = z.object({
   status: z.string(),
   amount: z.number(),
   currency: z.string(),
-});
+})
 
 export interface CompleteBooking extends z.infer<typeof _BookingModel> {
-  user: CompleteUser;
+  user: CompleteUser
 }
 
 /**
@@ -20,15 +20,6 @@ export interface CompleteBooking extends z.infer<typeof _BookingModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const BookingModel: z.ZodSchema<CompleteBooking> = z.lazy(() =>
-  _BookingModel.extend({
-    user: UserModel,
-  })
-);
-
-export const PartialBookingModel: z.ZodSchema<Partial<CompleteBooking>> =
-  z.lazy(() =>
-    _BookingModel.extend({
-      user: UserModel,
-    })
-  );
+export const BookingModel: z.ZodSchema<CompleteBooking> = z.lazy(() => _BookingModel.extend({
+  user: UserModel,
+}))
