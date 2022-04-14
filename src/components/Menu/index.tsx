@@ -46,17 +46,11 @@ const Menu: FC = () => {
               </li>
               <li className='text-black text-lg hover:text-gray-700 cursor-pointer md:ml-10 pt-10 md:pt-0 ml-5'>
                 {session ? (
-                  <Button
-                    onClick={() => signOut()}
-                    className='outline bg-white text-black'
-                  >
+                  <Button onClick={() => signOut()} variant={"blackFilled"}>
                     Log out
                   </Button>
                 ) : (
-                  <Button
-                    onClick={() => signIn()}
-                    className='outline bg-black text-white'
-                  >
+                  <Button onClick={() => signIn()} variant={"blackFilled"}>
                     Log in
                   </Button>
                 )}

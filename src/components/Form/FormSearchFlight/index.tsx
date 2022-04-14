@@ -52,51 +52,51 @@ const FormSearchFlight: FC<FormSearchFlightProps> = ({ id, href }) => {
         id={id}
         elevation={5}
         square
-        className="w-screen max-w-screen-md bg-zinc-200"
+        className='w-screen max-w-screen-md bg-zinc-200'
       >
-        <form onSubmit={methods.handleSubmit(onSubmitHandler)} className="">
+        <form onSubmit={methods.handleSubmit(onSubmitHandler)} className=''>
           <Grid
             container
             spacing={2}
             paddingX={10}
             paddingY={5}
-            alignItems="center"
-            justifyContent="center"
+            alignItems='center'
+            justifyContent='center'
           >
             <Grid item xs={12} sm={6}>
               <FormComboBox
-                name="origin"
-                placeholder="Origin"
+                name='origin'
+                placeholder='Origin'
                 autoCompleteOptions={iatalocations}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormComboBox
-                name="destination"
-                placeholder="Destination"
+                name='destination'
+                placeholder='Destination'
                 autoCompleteOptions={iatalocations}
               />
             </Grid>
             <Grid item xs={12} sm={12}>
-              <FormDateRangePicker name="searchDateRange" />
+              <FormDateRangePicker name='searchDateRange' />
             </Grid>
             <Grid item xs={12} sm={8}>
               <FormNumberPicker
-                name="numberAdults"
+                name='numberAdults'
                 defaultNumber={1}
-                label="Number of adults"
+                label='Number of adults'
               />
             </Grid>
             <Grid item xs={12} sm={8}>
               <FormNumberPicker
-                name="numberChildren"
+                name='numberChildren'
                 defaultNumber={0}
-                label="Number of children"
-                tooltipText="Children aged 0-15 years. Age limits and policies for travelling with children may vary so please check with the airline before booking."
+                label='Number of children'
+                tooltipText='Children aged 0-15 years. Age limits and policies for travelling with children may vary so please check with the airline before booking.'
               />
             </Grid>
             <Grid item xs={12} sm={8}>
-              <FormSubmit label="Search flights" />
+              <FormSubmit label='Search flights' />
             </Grid>
           </Grid>
         </form>

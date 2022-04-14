@@ -1,26 +1,69 @@
-import React, { FC, ReactElement } from "react";
+import React, { ReactNode } from "react";
 import classNames from "classnames";
 
-export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
-  className: string;
-  type?: "button" | "submit" | "reset" | undefined;
+type ButtonVariant =
+  | "blackFilled"
+  | "blackOutlined"
+  | "whiteFilled"
+  | "whiteOutlined";
+
+const VARIANT = {
+  blackFilled:
+    "bg-black text-white disabled:pointer-events-none disabled:opacity-40",
+  blackOutlined:
+    "bg-white text-black hover:bg-white/80 active:bg-white/60 focus:bg-white/40 border-2 border-black disabled:pointer-events-none disabled:opacity-40",
+  whiteFilled:
+    "bg-white text-black disabled:pointer-events-none disabled:opacity-40",
+  whiteOutlined:
+    "bg-black text-white hover:bg-black/80 active:bg-black/60 focus:bg-black/40 border-2 border-white disabled:pointer-events-none disabled:opacity-40",
+};
+
+export interface ButtonProps
+  extends React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
+  variant: ButtonVariant;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
+  fullWidth?: boolean;
+  className?: string;
 }
 
-const Button: FC<ButtonProps> = ({ className, type, onClick, children }) => {
-  return (
-    <div>
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className,
+      children,
+      variant,
+      startIcon,
+      endIcon,
+      fullWidth,
+      disabled,
+      ...rest
+    },
+    ref
+  ) => {
+    return (
       <button
-        type={type}
-        onClick={onClick}
+        {...rest}
+        ref={ref}
+        disabled={disabled}
         className={classNames(
           className,
-          "py-2 px-4 hover:bg-zinc-800 transition ease-in duration-100 text-center shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black rounded-md"
+          "flex font-bold items-center justify-center px-4 py-2 rounded-md  ",
+          VARIANT[variant],
+          fullWidth ? "w-full" : ""
         )}
       >
+        {startIcon && startIcon}
         {children}
+        {endIcon && endIcon}
       </button>
-    </div>
-  );
-};
+    );
+  }
+);
+
+Button.displayName = "Button";
 
 export default Button;
